@@ -1,0 +1,29 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: white;
+  height: 120px;
+  color: darkgrey;
+}
+
+.header-logo {
+  height: 80px;
+}
+
+.header-title {
+  color:black;
+  font-size: 1.5em;
+}
+
+.header-intro {
+  font-size: large;
+}
+
+.header-links{
+
+}
+
+ul{
+  list-style: none;
+}

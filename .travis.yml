@@ -1,0 +1,19 @@
+language: node_js
+node_js: node
+cache:
+  directories:
+    - node_modules
+    - client/node_modules
+script:
+  - cd client && npm i && npm test
+env:
+  - CI=true
+deploy:
+  provider: heroku
+  api_key:
+    secure: J7drhvhGfaQ36Y4rANGh73p9lIE7OWadcV3srpG9NN33D5hcyb4A26TOlZS5uZVhO9hiXXtQEJYRFwBbjHZq0IsUds0xZ/y87hZyMuS7Y2Oz0hz6KARiRkgyOTYSXMCmcURvhp96nkNzSepIfQkjXewfbN0Vtc3YO7KjQt5NBagqu9yEi7zuQ3Gq4AyvLTOcQ9NSee2rgzNUlIcECvlIsmw+r70uSKi1IhhPUx0f9Ag+vIm7VKHN13e/yYoCzq4031gbf3jr92Pqi6pkYXwObNTwZGNVsaBv92L2nADZ+l64xPtRfKoYxjtWmPSJXWPtGTpU0qs/Aeh395bhLtWn3GlXy7u4ENT5+giwvf1D+Ad39UlqEdRg00qqEwhNqhWotnlx500MYij+QN48lxuJbLOh8sY+QCbCV6U4O+z2hoECgi/Irtu5xos0NkA411iM3fMlBpEobkNA5E1Wq5G5p5hsoBmZgmZd2TstNBthR3IuDIoNB1hWhc3cKGL5OzO93MHZPgw5WCkmYPu0KlBW7BlCj2KmyzjDdTSiGt3Vpu2J4CtyXls9GUp9InIBK57u7XFPxXrYOTIUXr+w2yujp2Onwo3wqJG/Ui4qA9LHCUYAoa0hqTsVk8eDSnWYCi9aeqDRh5/AOrSr3ZQdeCXDZ3wJgWtlP3pu+D84BTX3BuU=
+  app: chronic-data
+  on:
+    repo: splnlss/chronic_data
+services:
+  - mongodb
