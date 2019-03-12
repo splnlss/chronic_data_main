@@ -6,6 +6,9 @@ exports.PORT = process.env.PORT || 8080
 exports.JWT_SECRET = process.env.JWT_SECRET || 'secret'
 exports.JWT_EXPIRY = process.env.JWT_EXPIRY || '7d'
 
+exports.AWS_ACCESS_ID = process.env.AWS_ACCESS_ID
+exports.AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY
+
 exports.DROPBOX_CLIENT_ID = process.env.DROPBOX_CLIENT_ID
 exports.DROPBOX_CLIENT_SECRET = process.env.DROPBOX_CLIENT_SECRET
 
