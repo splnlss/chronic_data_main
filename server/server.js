@@ -5,14 +5,8 @@ const mongoose = require('mongoose');
 const morgan = require('morgan');
 const passport = require('passport');
 
-// Here we use destructuring assignment with renaming so the two variables
-// called router (from ./users and ./auth) have different names
-// For example:
-// const actorSurnames = { james: "Stewart", robert: "De Niro" };
-// const { james: jimmy, robert: bobby } = actorSurnames;
-// console.log(jimmy); // Stewart - the variable name is jimmy, not james
-// console.log(bobby); // De Niro - the variable name is bobby, not robert
 const { router: usersRouter } = require('./src/users');
+const { router: awsRouter} = require('./src/s3')
 const { router: authRouter, localStrategy, jwtStrategy, dropboxStrategy } = require('./auth');
 
 mongoose.Promise = global.Promise;
@@ -23,6 +17,8 @@ const app = express();
 
 // Logging
 app.use(morgan('common'));
+
+//
 
 // CORS
 app.use(function (req, res, next) {
@@ -52,6 +48,7 @@ app.use(passport.session());
 
 app.use('/api/users/', usersRouter);
 app.use('/api/auth/', authRouter);
+app.use('/api/aws/', awsRouter);
 
 const jwtAuth = passport.authenticate('jwt', { session: false });
 
