@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const upload = require('multer');
-// const upload = require('../services/multer');
+const upload = require('./multer');
 
 const singleUpload = upload.single('image');
 
@@ -15,4 +14,4 @@ router.post('/image-upload', function(req, res){
   })
 })
 
-modules.exports = router;
+module.exports = {router};

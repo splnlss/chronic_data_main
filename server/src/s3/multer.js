@@ -1,15 +1,16 @@
 const multer = require('multer');
 const multerS3 = require('multer-s3');
 const aws = require('aws-sdk');
-
+const config = require('../../config');
 
 aws.config.update({
-  secretAccessKey: process.env.AWS_ACCESS_KEY,
-  acessKeyId: process.env.AWS_ACCESS_ID,
+  secretAccessKey: config.AWS_ACCESS_KEY,
+  accessKeyId: config.AWS_ACCESS_ID,
   region: 'us-east-2'
 })
 
 const s3 = new aws.S3();
+console.log(s3.config.update)
 
 const upload = multer({
   storage: multerS3({
@@ -17,7 +18,10 @@ const upload = multer({
     bucket: 'chronicdata-records',
     acl: 'bucket-owner-full-control',
     metadata: function(req, file, callback){
-      callback(null, Date,now().toString())
+      callback(null, {fieldName: file.fieldname})
+    },
+    key: function (req, file, callback) {
+      callback(null, Date.now().toString())
     }
   })
 })
