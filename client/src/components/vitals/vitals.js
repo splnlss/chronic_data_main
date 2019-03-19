@@ -1,7 +1,7 @@
 import React from 'react';
-import './dashboard.css';
+import './../../containers/dashboard/dashboard';
 
-export default class AddVitals extends React.Component {
+export default class Vitals extends React.Component {
 
     onSubmit(event) {
         event.preventDefault();

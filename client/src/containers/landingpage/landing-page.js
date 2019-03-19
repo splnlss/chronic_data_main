@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
-import './dashboard.css';
-import LoginForm from '../auth/components/login-form';
+import '../dashboard/dashboard.css';
+import LoginForm from '../../auth/components/login-form';
 
 export function LandingPage(props) {
     // If we are logged in redirect straight to the user's dashboard

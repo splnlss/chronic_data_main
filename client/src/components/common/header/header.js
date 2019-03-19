@@ -1,11 +1,11 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Link, Redirect} from 'react-router-dom';
-import './dashboard.css'
+import './../../../containers/dashboard/dashboard'
 import './header.css'
-import logo from '../images/logo.svg';
+import logo from '../../../images/logo.svg';
 import {connect} from 'react-redux';
-import {clearAuth} from '../auth/actions/auth';
-import {clearAuthToken} from '../local-storage';
+import {clearAuth} from '../../../auth/actions/auth';
+import {clearAuthToken} from '../../../local-storage';
 
 export class Header extends React.Component {
   logOut() {
@@ -19,8 +19,8 @@ export class Header extends React.Component {
     if (this.props.loggedIn){
         headerMenu =(
           <div>
-            <li><Link to="/Dashboard/AddDocument">+ Add Document</Link></li>
-            <li><Link to="/Dashboard/AddVitals">+ Add Vitals</Link></li>
+            <li><Link to="/Dashboard/Documents">+ Add Document</Link></li>
+            <li><Link to="/Dashboard/Vitals">+ Add Vitals</Link></li>
             <li><Link to="/Dashboard/FileManagement">+ File Management</Link></li>
             <li><Link to="/Dashboard/Contact">+ Contact</Link></li>
             <li><a href="#" onClick={() => this.logOut()}>+ Log out</a></li>

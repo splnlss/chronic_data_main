@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import './dashboard.css';
+import '../../containers/dashboard/dashboard';
 
 class Contact extends Component {
   render() {

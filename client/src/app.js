@@ -1,15 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {BrowserRouter as Router, Route, Link, Switch, withRouter} from 'react-router-dom';
-import HeaderBar from './header';
-import LandingPage from './landing-page';
-import Dashboard from './dashboard';
-import AddDocument from './addDocument';
-import AddVitals from './addVitals';
-import FileManagement from './fileManagement';
-import Contact from "./contact";
-import RegistrationPage from '../auth/components/registration-page';
-import {refreshAuthToken} from '../auth/actions/auth';
+import HeaderBar from './components/common/header/header';
+import LandingPage from './containers/landingpage/landing-page';
+import Dashboard from './containers/dashboard/dashboard';
+import Documents from './components/documents/documents';
+import Vitals from './components/vitals/vitals';
+import FileManagement from './components/documents/documents';
+import Contact from "./containers/contact/contact";
+import RegistrationPage from './auth/components/registration-page';
+import {refreshAuthToken} from './auth/actions/auth';
 
 export class App extends React.Component {
     render() {
@@ -19,8 +19,8 @@ export class App extends React.Component {
                 <Switch>
                   <Route exact path="/" component={LandingPage}/>
                   <Route exact path="/Dashboard" component={Dashboard} />
-                  <Route path="/Dashboard/AddDocument" component={AddDocument}/>
-                  <Route path="/Dashboard/AddVitals" component={AddVitals}/>
+                  <Route path="/Dashboard/Documents" component={Documents}/>
+                  <Route path="/Dashboard/Vitals" component={Vitals}/>
                   <Route path="/Dashboard/FileManagement" component={FileManagement}/>
                   <Route path="/Dashboard/Contact" component={Contact}/>
                   <Route path="/register" component={RegistrationPage} />

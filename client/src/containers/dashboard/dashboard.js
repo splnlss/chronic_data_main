@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
-import requiresLogin from '../auth/components/requires-login';
-import {fetchProtectedData} from '../auth/actions/protected-data';
+import requiresLogin from '../../auth/components/requires-login';
+import {fetchProtectedData} from '../../auth/actions/protected-data';
 import './dashboard.css';
 
 export class Dashboard extends React.Component {

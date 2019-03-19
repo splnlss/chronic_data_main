@@ -1,6 +1,6 @@
 import React from 'react';
-import Card from './card';
-import AddDocument from './addDocument';
+import Card from '../contacts/card';
+import Documents from './documents';
 import './dashboard.css';
 
 export default class List extends React.Component {
@@ -33,7 +33,7 @@ export default class List extends React.Component {
                 <ul className="list">
                     {cards}
                     <li>
-                        <AddDocument
+                        <Documents
                             type="card"
                             onAdd={text => this.addCard(text)}
                         />

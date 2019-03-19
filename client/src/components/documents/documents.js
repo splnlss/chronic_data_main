@@ -1,8 +1,8 @@
 import React from 'react';
-import './addDocument.css';
-import './dashboard.css';
+import './documents.css';
+import '../../containers/dashboard/dashboard';
 
-export default class AddDocument extends React.Component {
+export default class Documents extends React.Component {
     onSubmit(event) {
         event.preventDefault();
     }
