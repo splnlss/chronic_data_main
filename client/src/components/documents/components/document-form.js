@@ -63,11 +63,12 @@ export class DocumentForm extends React.Component {
                   </ul>
                   <ul>
                   <label htmlFor="documentSelector">Document:</label>
-                  <Field
+                  <input type="file"></input>
+                  {/* <Field
                     name="documentSelector" 
                     component="input" 
                     type="file" 
-                    value={null} />
+                    value={null} /> */}
                   </ul>
                 </li>
                 <button disabled={this.props.pristine || this.props.submitting}>

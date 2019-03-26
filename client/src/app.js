@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Route, Link, Switch, withRouter} from 'react-ro
 import HeaderBar from './components/common/header/header';
 import LandingPage from './containers/landingpage/landing-page';
 import Dashboard from './containers/dashboard/dashboard';
-import Documents from './components/documents/components/document-form';
+import DocumentsForm from './components/documents/components/document-form';
 import Vitals from './components/vitals/vitals';
 // import FileManagement from './components/documents/documents';
 import Contact from "./containers/contact/contact";
@@ -19,7 +19,7 @@ export class App extends React.Component {
                 <Switch>
                   <Route exact path="/" component={LandingPage}/>
                   <Route exact path="/Dashboard" component={Dashboard} />
-                  <Route path="/Dashboard/Documents" component={Documents}/>
+                  <Route path="/Dashboard/Documents" component={DocumentsForm}/>
                   <Route path="/Dashboard/Vitals" component={Vitals}/>
                   {/* <Route path="/Dashboard/FileManagement" component={FileManagement}/> */}
                   <Route path="/Dashboard/Contact" component={Contact}/>

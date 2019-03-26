@@ -41,8 +41,8 @@ export class LoginForm extends React.Component {
                     id="password"
                     validate={[required, nonEmpty]}
                 />
-
-                <a class="dropbox-btn" href="http://localhost:8080/api/auth/dropbox">Dropbox</a>
+{/* 
+                <a class="dropbox-btn" href="http://localhost:8080/api/auth/dropbox">Dropbox</a> */}
 
                 <button disabled={this.props.pristine || this.props.submitting}>
                     Log in
