@@ -1,6 +1,6 @@
 import React from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
-import {submitDocument} from '../action/submit-document'
+import {awsUpload} from '../action/awsUpload';
 import Input from './input';
 import {required, nonEmpty} from '../../../validators';
 import './documents.css';
@@ -9,9 +9,10 @@ import '../../../containers/dashboard/dashboard';
 export class DocumentForm extends React.Component {
     onSubmit(values) {
       const {documentName, notes, healthProviderName, documentSelector} = values;
-      const document = {documentName, notes, healthProviderName, documentSelector};
+      // const document = {documentName, notes, healthProviderName, documentSelector};
+      const documentUpload = {documentName, notes, healthProviderName, documentSelector};
       return this.props
-          .dispatch(submitDocument(document))
+          .dispatch(awsUpload(documentUpload))
           // .then(() => this.props.dispatch(login(username, password)));
         // event.preventDefault(
         //   //dispatch props!!   return this.props.dispatch(
