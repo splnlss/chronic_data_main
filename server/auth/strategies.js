@@ -60,7 +60,6 @@ const dropboxStrategy = new DropboxOAuth2Strategy({
      clientID: DROPBOX_CLIENT_ID,
      clientSecret: DROPBOX_CLIENT_SECRET,
      callbackURL: "http://localhost:8080/api/auth/dropbox/callback"
-
   },
   // ()=>{
   function(accessToken, refreshToken, profile, done) {

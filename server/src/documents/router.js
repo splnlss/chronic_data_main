@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const bodyParser = require('body-parser')
-const { Documents } = require('./model.js')
+const { Document } = require('./model.js')
 const passport = require('passport')
 
 const jsonParser = bodyParser.json()
@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
     promise= Document.findByDocumentName(req.query["searchTerm"])
   }else{
     console.log('no searchTerm')
-    promise = Documents.find()
+    promise = Document.find()
   }
   promise
     .then((documents) => {
@@ -32,26 +32,27 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req,res) => {
-  Documents
+  Document
     .findById(req.params.id)
     .then(document => res.json(document.serialize()))
-    .catch(er(err)> {
+    .catch((err) => {
         console.error(err);
         res.status(500).json({ error: 'error finding by ID' });
       })
 })
 
-router.post('/', jwtAuth, (req, res) => {
-  const requiredFields = ['documentName', 'documentURL'];
-  for (let i = 0; i < requiredFields.length; i++) {
-    const field = requiredFields[i];
-    if (!(field in req.body)) {
-      const message = `Missing \`${field}\` in request body`;
-      console.error(message);
-      return res.status(400).send(message);
-    }
-  }
-  console.log(req.user.username)
+router.post('/', (req, res) => {
+  const requiredFields = ['documentName'];
+  console.log(req.body)
+  // for (let i = 0; i < requiredFields.length; i++) {
+  //   const field = requiredFields[i];
+  //   if (!(field in req.body)) {
+  //     const message = `Missing \`${field}\` in request body`;
+  //     console.error(message);
+  //     return res.status(400).send(message);
+  //   }
+  // }
+
   Document
   .create({
       documentName: req.body.documentName,
@@ -89,7 +90,7 @@ router.put('/:id', jwtAuth, (req, res) =>{
 })
 
 router.delete('/:id', jwtAuth, (req, res) => {
-    Documents
+    Document
       .findByIdAndRemove(req.params.id)
       .then(() => {
         res.status(204).json({ message: 'success' });
