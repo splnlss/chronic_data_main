@@ -34,7 +34,7 @@ app.use(function (req, res, next) {
 
 passport.use('localStrategy', localStrategy);
 passport.use('jwtStrategy', jwtStrategy);
-passport.use('dropbox-oauth2', dropboxStrategy);
+// passport.use('dropbox-oauth2', dropboxStrategy);
 
 passport.serializeUser(function(user, done) {
   done(null, user);

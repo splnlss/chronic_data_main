@@ -1,3 +1,5 @@
+// import {connect} from 'react-redux';
+
 const express = require('express')
 const router = express.Router()
 
@@ -10,6 +12,10 @@ const jsonParser = bodyParser.json()
 router.use(jsonParser)
 
 const jwtAuth = passport.authenticate('jwt', {session: false})
+
+const upload = require('../aws/multer');
+const singleUpload = upload.single('documentFile');
+
 
 // get documents
 router.get('/', (req, res) => {
@@ -44,6 +50,27 @@ router.get('/:id', (req,res) => {
 router.post('/', (req, res) => {
   const requiredFields = ['documentName'];
   console.log(req.body)
+  singleUpload(req, res, function(err, some) {
+    if (err){
+      return res.status(422).send({errors: [{title: 'Document File Upload Error', detail: err.message}]})
+    }
+    Document
+    .create({
+        documentName: req.body.documentName,
+        notes: req.body.notes,
+        healthProviderName: req.body.healthProviderName,
+        address: req.body.address,
+        phone: req.body.phone,
+        // documentURL: req.file.location,
+        userName: req.body.userName
+      })
+    .then(document => res.status(201).json(document.serialize()))
+    .catch(err => {
+        console.error(err)
+        res.status(500).json({ error: 'error creating document' })
+    })
+  })
+})
   // for (let i = 0; i < requiredFields.length; i++) {
   //   const field = requiredFields[i];
   //   if (!(field in req.body)) {
@@ -53,24 +80,8 @@ router.post('/', (req, res) => {
   //   }
   // }
 
-  Document
-  .create({
-      documentName: req.body.documentName,
-      notes: req.body.notes,
-      healthProviderName: req.body.healthProviderName,
-      address: req.body.address,
-      phone: req.body.phone,
-      documentURL: req.body.documentURL,
-      userName: req.body.userName
-    })
-  .then(document => res.status(201).json(document.serialize()))
-    .catch(err => {
-      console.error(err)
-      res.status(500).json({ error: 'error creating document' })
-    })
-  })
 
-router.put('/:id', jwtAuth, (req, res) =>{
+router.put('/:id', (req, res) =>{
   if (!(req.params.id && req.body.id && (req.params.id === req.body.id))) {
     res.status(400).json({
       error: 'Request path id and request body id values must match'
@@ -89,7 +100,7 @@ router.put('/:id', jwtAuth, (req, res) =>{
     .catch(err => res.status(500).json({ message: 'error updating document' }))
 })
 
-router.delete('/:id', jwtAuth, (req, res) => {
+router.delete('/:id', (req, res) => {
     Document
       .findByIdAndRemove(req.params.id)
       .then(() => {
@@ -99,6 +110,13 @@ router.delete('/:id', jwtAuth, (req, res) => {
         console.error(err);
         res.status(500).json({ error: 'error deleting document' });
       })
-  })
+})
+  
+// const mapStateToProps = state => ({
+//   authToken: state.auth.authToken,
+//   currentUser: state.auth.currentUser
+// });
+
+// export default withRouter(connect(mapStateToProps)(App));
 
 module.exports = {router}

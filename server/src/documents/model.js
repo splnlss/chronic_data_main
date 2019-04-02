@@ -9,7 +9,7 @@ const DocumentSchema = mongoose.Schema({
   address: { type: String, required: false },
   phone: { type: String, required: false },
   documentURL: { type: String, required: false },
-  userName: { type: String, required: true },
+  userName: { type: String, required: false },
   publishedAt: { type: Date, default: new Date() },
 });
 

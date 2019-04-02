@@ -54,21 +54,23 @@ const jwtStrategy = new JwtStrategy(
   }
 );
 
-const dropboxStrategy = new DropboxOAuth2Strategy({
-    //options for strategy
-     apiVersion: '2',
-     clientID: DROPBOX_CLIENT_ID,
-     clientSecret: DROPBOX_CLIENT_SECRET,
-     callbackURL: "http://localhost:8080/api/auth/dropbox/callback"
-  },
-  // ()=>{
-  function(accessToken, refreshToken, profile, done) {
-    User.findOrCreate({ providerId: profile.id  }, function (err, user) {
-      return done(err, user);
-    });
-    //passport callback function
-  })
+// const dropboxStrategy = new DropboxOAuth2Strategy({
+//     //options for strategy
+//      apiVersion: '2',
+//      clientID: DROPBOX_CLIENT_ID,
+//      clientSecret: DROPBOX_CLIENT_SECRET,
+//      callbackURL: "http://localhost:8080/api/auth/dropbox/callback"
+//   },
+//   // ()=>{
+//   function(accessToken, refreshToken, profile, done) {
+//     User.findOrCreate({ providerId: profile.id  }, function (err, user) {
+//       return done(err, user);
+//     });
+//     //passport callback function
+//   })
 
 
 
-module.exports = { localStrategy, jwtStrategy, dropboxStrategy };
+module.exports = { localStrategy, jwtStrategy, 
+  // dropboxStrategy 
+};

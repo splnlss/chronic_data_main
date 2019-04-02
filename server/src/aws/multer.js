@@ -3,6 +3,7 @@ const multerS3 = require('multer-s3');
 const aws = require('aws-sdk');
 const config = require('../../config');
 
+
 aws.config.update({
   secretAccessKey: config.AWS_ACCESS_KEY,
   accessKeyId: config.AWS_ACCESS_ID,
@@ -11,6 +12,7 @@ aws.config.update({
 
 const s3 = new aws.S3();
 console.log(s3.config.update)
+
 
 const upload = multer({
   storage: multerS3({
