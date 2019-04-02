@@ -4,7 +4,8 @@ import {API_BASE_URL} from '../../../config';
 import {normalizeResponseErrors} from './utils';
 
 export const awsUpload = documentUpload => dispatch => {
-  return fetch(`${API_BASE_URL}/api/aws/image-upload`, {
+    console.log(documentUpload)
+  return fetch(`${API_BASE_URL}/documents`, {
       method: 'POST',
       headers: {
           'content-type': 'application/json'

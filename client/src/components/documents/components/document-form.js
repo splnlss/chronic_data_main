@@ -1,6 +1,7 @@
 import React from 'react';
 import {Field, reduxForm, focus} from 'redux-form';
-import {awsUpload} from '../action/awsUpload';
+// import {Button, Icon} from 'semanitc-ui-react';
+import {submitDocument} from '../action/submit-document';
 import Input from './input';
 import {required, nonEmpty} from '../../../validators';
 import './documents.css';
@@ -8,15 +9,15 @@ import '../../../containers/dashboard/dashboard';
 
 export class DocumentForm extends React.Component {
     onSubmit(values) {
-      const {documentName, notes, healthProviderName, documentSelector} = values;
+      const {documentName, notes, healthProviderName} = values;
       // const document = {documentName, notes, healthProviderName, documentSelector};
-      const documentUpload = {documentName, notes, healthProviderName, documentSelector};
+      const documentUpload = {documentName, notes, healthProviderName};
+      console.log(documentUpload);
       return this.props
-          .dispatch(awsUpload(documentUpload))
-          // .then(() => this.props.dispatch(login(username, password)));
+          .dispatch(submitDocument(documentUpload))
+        //   .then(() => this.props.dispatch(login(username, password)));
         // event.preventDefault(
-        //   //dispatch props!!   return this.props.dispatch(
-        // );
+          //dispatch props!!   return this.props.dispatch(
     }
     render() {
       // let error;
@@ -62,15 +63,11 @@ export class DocumentForm extends React.Component {
                       validate={[required, nonEmpty]}
                     />
                   </ul>
-                  <ul>
-                  <label htmlFor="documentSelector">Document:</label>
-                  <input type="file"></input>
-                  {/* <Field
-                    name="documentSelector" 
-                    component="input" 
-                    type="file" 
-                    value={null} /> */}
-                  </ul>
+                  {/* <ul>
+                  <label htmlFor="documentFile">Document:</label>
+                  <input id="documentFile"  type="file" name="documentFile"></input>
+                 
+                  </ul> */}
                 </li>
                 <button disabled={this.props.pristine || this.props.submitting}>
                     Add
