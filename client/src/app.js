@@ -6,7 +6,7 @@ import LandingPage from './containers/landingpage/landing-page';
 import Dashboard from './containers/dashboard/dashboard';
 import DocumentsForm from './components/documents/components/document-form';
 import Vitals from './components/vitals/vitals';
-// import FileManagement from './components/documents/documents';
+import DocumentViewer from './components/documentViewer/components/documentViewer';
 import Contact from "./containers/contact/contact";
 import RegistrationPage from './auth/components/registration-page';
 import {refreshAuthToken} from './auth/actions/auth';
@@ -21,7 +21,7 @@ export class App extends React.Component {
                   <Route exact path="/Dashboard" component={Dashboard} />
                   <Route path="/Dashboard/Documents" component={DocumentsForm}/>
                   <Route path="/Dashboard/Vitals" component={Vitals}/>
-                  {/* <Route path="/Dashboard/FileManagement" component={FileManagement}/> */}
+                  <Route path="/Dashboard/DocumentViewer" component={DocumentViewer}/>
                   <Route path="/Dashboard/Contact" component={Contact}/>
                   <Route path="/register" component={RegistrationPage} />
                   {/* <SecureRoute path="/profile" component={ProfilePage} /> */}

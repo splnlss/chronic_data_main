@@ -3,6 +3,7 @@ import {reducer as formReducer} from 'redux-form';
 import thunk from 'redux-thunk';
 import {loadAuthToken} from './local-storage';
 import authReducer from './auth/reducers/auth';
+import documentsReducer from './components/documentViewer/reducer/documentReducer';
 import protectedDataReducer from './auth/reducers/protected-data';
 import {setAuthToken, refreshAuthToken} from './auth/actions/auth';
 
@@ -12,6 +13,7 @@ const store = createStore(
     combineReducers({
         form: formReducer,
         auth: authReducer,
+        documents: documentsReducer,
         protectedData: protectedDataReducer
     }),
     composeEnhancers(
