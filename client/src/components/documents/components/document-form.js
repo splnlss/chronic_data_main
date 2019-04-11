@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import {Field, reduxForm, focus} from 'redux-form';
 // import {Button, Icon} from 'semanitc-ui-react';
 import {submitDocument} from '../action/submit-document';
@@ -10,8 +11,8 @@ import '../../../containers/dashboard/dashboard';
 export class DocumentForm extends React.Component {
     onSubmit(values) {
       const {documentName, notes, healthProviderName} = values;
-      // const document = {documentName, notes, healthProviderName, documentSelector};
-      const documentUpload = {documentName, notes, healthProviderName};
+      const {username} = this.props.auth.currentUser;
+      const documentUpload = {documentName, notes, healthProviderName, username};
       console.log(documentUpload);
       return this.props
           .dispatch(submitDocument(documentUpload))
@@ -78,8 +79,13 @@ export class DocumentForm extends React.Component {
     }
 }
 
+const mapStateToProps = (state) =>{
+  return {auth:state.auth}
+}
+
 export default reduxForm({
   form: 'documentform',
   onSubmitFail: (errors, dispatch) => dispatch(focus('documentName', 'healthProviderName'))
-})(DocumentForm);
+})(connect(mapStateToProps)(DocumentForm));
+
 // export default requiresLogin()(connect(mapStateToProps)(Dashboard));

@@ -24,4 +24,4 @@ export const submitDocument = document => dispatch => {
               );
           }
       });
-};
+};  
