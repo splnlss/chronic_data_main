@@ -6,6 +6,7 @@ import LandingPage from './containers/landingpage/landing-page';
 import Dashboard from './containers/dashboard/dashboard';
 import DocumentsForm from './components/documents/components/document-form';
 import Vitals from './components/vitals/vitals';
+import DocumentList from './components/documentViewer/components/documentList';
 import DocumentViewer from './components/documentViewer/components/documentViewer';
 import Contact from "./containers/contact/contact";
 import RegistrationPage from './auth/components/registration-page';
@@ -19,11 +20,12 @@ export class App extends React.Component {
                 <Switch>
                   <Route exact path="/" component={LandingPage}/>
                   <Route exact path="/Dashboard" component={Dashboard} />
-                  <Route path="/Dashboard/Documents" component={DocumentsForm}/>
+                  <Route path="/Dashboard/SubmitDocument" component={DocumentsForm}/>
                   <Route path="/Dashboard/Vitals" component={Vitals}/>
-                  <Route path="/Dashboard/DocumentViewer" component={DocumentViewer}/>
+                  <Route path="/Dashboard/Documents" component={DocumentList}/>
                   <Route path="/Dashboard/Contact" component={Contact}/>
                   <Route path="/register" component={RegistrationPage} />
+                  <Route path="/documents/:id" component={DocumentViewer} />
                   {/* <SecureRoute path="/profile" component={ProfilePage} /> */}
                 </Switch>
             </div>

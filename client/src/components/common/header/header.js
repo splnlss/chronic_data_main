@@ -19,9 +19,9 @@ export class Header extends React.Component {
     if (this.props.loggedIn){
         headerMenu =(
           <div>
-            <li><Link to="/Dashboard/Documents">+ Add Document</Link></li>
+            <li><Link to="/Dashboard/SubmitDocument">+ Add Document</Link></li>
+            <li><Link to="/Dashboard/Documents">+ Documents</Link></li>
             <li><Link to="/Dashboard/Vitals">+ Add Vitals</Link></li>
-            <li><Link to="/Dashboard/FileManagement">+ File Management</Link></li>
             <li><Link to="/Dashboard/Contact">+ Contact</Link></li>
             <li><a href="#" onClick={() => this.logOut()}>+ Log out</a></li>
           </div>
