@@ -26,3 +26,25 @@ export const fetchDocuments = () => (dispatch) => {
          
         })
 }
+
+// export const SET_DOCUMENT = 'SET_DOCUMENT';
+// export const fetchDocument = () => (DocumentID) => {
+
+//     console.log('START fetch')
+//     fetch(`${API_BASE_URL}/documents/${DocumentID}`, {
+//         method: 'GET',
+//         headers: {
+//             'content-type': 'application/json'
+//       },
+//       body: JSON.stringify()
+//     })
+//     .then(res => res.json())
+//     .then(data => {
+//         dispatch({type:SET_DOCUMENT, payload: data})
+//       })
+//     .catch(err => {
+//           const {reason, message, location} = err;
+         
+//         })
+// }
+

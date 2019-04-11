@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import '../../../containers/dashboard/dashboard';
-import { fetchDocument} from '../action/fetch-document';
 import {API_BASE_URL} from '../../../config';
 
 import { Link } from 'react-router-dom'
@@ -9,8 +8,7 @@ import { Link } from 'react-router-dom'
 export class DocumentViewer extends React.Component {
 
   componentDidMount(){
-    const document = fetchDocument(this.props.match);
-    console.log(document)
+    // const document = fetchDocument(this.props.match);
     // this.props.fetchDocuments();
 
     // hypothetically getting a document
@@ -28,8 +26,8 @@ export class DocumentViewer extends React.Component {
   })
   //   .then(res => normalizeResponseErrors(res))
   .then(res => res.json())
-  .then(data => {
-      console.log('DATA:', data)
+  .then(document => {
+      console.log('Document:', document)
     })
     .catch(err => {
         const {reason, message, location} = err;
