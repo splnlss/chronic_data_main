@@ -62,7 +62,7 @@ router.post('/', (req, res) => {
         address: req.body.address,
         phone: req.body.phone,
         // documentURL: req.file.location,
-        userName: req.body.userName
+        userName: req.body.username
       })
     .then(document => res.status(201).json(document.serialize()))
     .catch(err => {
