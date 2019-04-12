@@ -54,8 +54,9 @@ export class DocumentViewer extends React.Component {
             <h3>{document ? document.documentName : ''}</h3>
             {document ? 
                 <div className="Document">
-                  <p>edit</p>
-                  <p>delete</p> 
+                  <p><a href="#">edit</a> | <a href="#">delete</a></p>
+                  <p>Health Provider: {document.healthProviderName}</p>
+                  <p>Notes: {document.notes}</p>
                 </div>
               : ''}
           </div>

@@ -8,7 +8,7 @@ import DocumentsForm from './components/documents/components/document-form';
 import Vitals from './components/vitals/vitals';
 import DocumentList from './components/documentViewer/components/documentList';
 import DocumentViewer from './components/documentViewer/components/documentViewer';
-import DocumentEdit from './components/'
+import DocumentEdit from './components/documents/components/document-edit'
 import Contact from "./containers/contact/contact";
 import RegistrationPage from './auth/components/registration-page';
 import {refreshAuthToken} from './auth/actions/auth';
