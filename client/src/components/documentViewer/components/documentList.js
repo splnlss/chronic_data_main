@@ -18,8 +18,8 @@ export class DocumentList extends React.Component {
         <p>Document Data</p>
         <ul>
         { documents && documents.map(document => (
-          <div id={document.id}>
-            <li key={document.id}><h4>Title: <Link to={`/documents/${document.id}`}>{document.documentName}</Link></h4></li>
+          <div key={document.id}>
+            <li><h4>Title: <Link to={`/documents/${document.id}`}>{document.documentName}</Link></h4></li>
           </div>
         ))}
         </ul>

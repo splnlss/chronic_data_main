@@ -8,6 +8,7 @@ import DocumentsForm from './components/documents/components/document-form';
 import Vitals from './components/vitals/vitals';
 import DocumentList from './components/documentViewer/components/documentList';
 import DocumentViewer from './components/documentViewer/components/documentViewer';
+import DocumentEdit from './components/'
 import Contact from "./containers/contact/contact";
 import RegistrationPage from './auth/components/registration-page';
 import {refreshAuthToken} from './auth/actions/auth';
@@ -26,6 +27,7 @@ export class App extends React.Component {
                   <Route path="/Dashboard/Contact" component={Contact}/>
                   <Route path="/register" component={RegistrationPage} />
                   <Route path="/documents/:id" component={DocumentViewer} />
+                  <Route path="/documents/edit/:id" component={DocumentEdit} />
                   {/* <SecureRoute path="/profile" component={ProfilePage} /> */}
                 </Switch>
             </div>
