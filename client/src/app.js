@@ -26,8 +26,8 @@ export class App extends React.Component {
                   <Route path="/Dashboard/Documents" component={DocumentList}/>
                   <Route path="/Dashboard/Contact" component={Contact}/>
                   <Route path="/register" component={RegistrationPage} />
-                  <Route path="/documents/:id" component={DocumentViewer} />
                   <Route path="/documents/edit/:id" component={DocumentEdit} />
+                  <Route path="/documents/:id" component={DocumentViewer} />
                   {/* <SecureRoute path="/profile" component={ProfilePage} /> */}
                 </Switch>
             </div>

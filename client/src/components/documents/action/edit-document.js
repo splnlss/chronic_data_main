@@ -3,8 +3,9 @@ import {SubmissionError} from 'redux-form';
 import {API_BASE_URL} from '../../../config';
 import {normalizeResponseErrors} from './utils';
 
-export const editDocument = document => dispatch => {
-  return fetch(`${API_BASE_URL}/documents/edit`, {
+export const editDocument = (id, document) => dispatch => {
+
+  return fetch(`${API_BASE_URL}/documents/${id}`, {
       method: 'PUT',
       headers: {
           'content-type': 'application/json'

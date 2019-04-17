@@ -23,23 +23,21 @@ export class DocumentViewer extends React.Component {
       })
     //   .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(document => {    //how to convert this to useable format??
+    .then(document => {
         this.setState({document:document})
       })
       .catch(err => {
           const {reason, message, location} = err;
         
         })
-      // const document = fetchDocument(this.props.match);
-      // this.props.fetchDocuments();
-
-      // hypothetically getting a document
-      // this.props.match.params.id -- id from the URL
     }
   }
 
+  editHandler = (documentID) => {
+    this.props.history.push(`/documents/edit/${documentID}`);
+  }
+
   deleteHandler = () => {
-    //handle delete and js popup
     const { match } = this.props;
     fetch(`${API_BASE_URL}/documents/${match.params.id}`, {
       method: 'Delete',
@@ -72,8 +70,13 @@ export class DocumentViewer extends React.Component {
             {document ? 
                 <div className="Document">
                   <div className="Edit">
-                    <p><Link to={`/documents/edit/${document.id}`} component={"button"}>Edit</Link>
-                    <button onClick={this.deleteHandler}>Delete</button></p> 
+                    <p>
+                      {/* <button onClick={this.editHandler(document.id)}>Edit</button> */}
+                      <Link to={`/documents/edit/${document.id}`} component="button"><button type="button">Edit</button></Link>
+                      <button onClick={ () => {
+                         if(window.confirm('Are you sure you want to delete this document?')){
+                           this.deleteHandler()
+                          }}}>Delete</button></p> 
                   </div>
                   <p>Health Provider: {document.healthProviderName}</p>
                   <p>Notes: {document.notes}</p>
