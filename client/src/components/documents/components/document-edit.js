@@ -30,6 +30,9 @@ export class DocumentEdit extends React.Component {
     console.log(documentUpload);
     return this.props
         .dispatch(editDocument(id, documentUpload))
+        .then(()=>{
+          this.props.history.push('/Dashboard/Documents');
+        })
   }
   render() {
     const { documents, match } = this.props;
@@ -38,9 +41,10 @@ export class DocumentEdit extends React.Component {
       return <Redirect to="/Dashboard/Documents" />;
     }
   return (
-        <form className="document-form" onSubmit={this.props.handleSubmit(values =>
-          this.onSubmit(values)
-      )}>
+        <div className="document">
+          <form className="document-form" onSubmit={this.props.handleSubmit(values =>
+            this.onSubmit(values)
+          )}>
             <li>
             <ul>
                 <label htmlFor="documentName">Document Name:</label>
@@ -85,7 +89,8 @@ export class DocumentEdit extends React.Component {
                 Add
             </button>
             {/* <button type="button">Cancel</button> */}
-        </form>  
+        </form>
+      </div>
     );
   }
 }

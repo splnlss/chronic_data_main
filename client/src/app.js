@@ -18,6 +18,7 @@ export class App extends React.Component {
         return (
             <div className="app">
                 <HeaderBar />
+                <main>
                 <Switch>
                   <Route exact path="/" component={LandingPage}/>
                   <Route exact path="/Dashboard" component={Dashboard} />
@@ -30,6 +31,7 @@ export class App extends React.Component {
                   <Route path="/documents/:id" component={DocumentViewer} />
                   {/* <SecureRoute path="/profile" component={ProfilePage} /> */}
                 </Switch>
+                </main>
             </div>
         );
     }

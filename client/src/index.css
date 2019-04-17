@@ -12,3 +12,13 @@ h2, h3 {
 h2 {
   color: dark;
 }
+main {
+  align-content: center;
+}
+.document{
+  background-color: cornsilk;
+  justify-content: center;
+  min-width: 500px;
+  padding:50px;
+
+}

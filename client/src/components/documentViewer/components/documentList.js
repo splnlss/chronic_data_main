@@ -14,7 +14,7 @@ export class DocumentList extends React.Component {
   render(){
     const { documents } = this.props;
     return (
-      <div>
+      <div className="document">
         <p>Document Data</p>
         <ul>
         { documents && documents.map(document => (

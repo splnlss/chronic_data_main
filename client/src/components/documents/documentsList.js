@@ -28,7 +28,7 @@ export default class List extends React.Component {
         );
         return (
             <main>
-            <div>
+            <div className="document">
                 <h3>{this.props.title}</h3>
                 <ul className="list">
                     {cards}

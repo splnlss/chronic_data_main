@@ -13,9 +13,12 @@ export class DocumentForm extends React.Component {
       const {documentName, notes, healthProviderName} = values;
       const {username} = this.props.auth.currentUser;
       const documentUpload = {documentName, notes, healthProviderName, username};
-      console.log(documentUpload);
+      // console.log(documentUpload);
       return this.props
           .dispatch(submitDocument(documentUpload))
+          .then(()=>{
+            this.props.history.push('/Dashboard/Documents');
+          })
         //   .then(() => this.props.dispatch(login(username, password)));
         // event.preventDefault(
           //dispatch props!!   return this.props.dispatch(
@@ -30,9 +33,10 @@ export class DocumentForm extends React.Component {
       //     );
       // }
       return (
+         <div className="document">
             <form className="document-form" onSubmit={this.props.handleSubmit(values =>
               this.onSubmit(values)
-          )}>
+             )}>
                 <li>
                 <ul>
                     <label htmlFor="documentName">Document Name:</label>
@@ -75,6 +79,7 @@ export class DocumentForm extends React.Component {
                 </button>
                 {/* <button type="button">Cancel</button> */}
             </form>  
+          </div>
         );
     }
 }

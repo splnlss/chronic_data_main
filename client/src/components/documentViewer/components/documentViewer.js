@@ -33,10 +33,6 @@ export class DocumentViewer extends React.Component {
     }
   }
 
-  editHandler = (documentID) => {
-    this.props.history.push(`/documents/edit/${documentID}`);
-  }
-
   deleteHandler = () => {
     const { match } = this.props;
     fetch(`${API_BASE_URL}/documents/${match.params.id}`, {
@@ -51,8 +47,7 @@ export class DocumentViewer extends React.Component {
     })
     .then(()=>{
       this.props.history.push('/Dashboard/Documents');
-    }
-    )
+    })
   }
 
   render(){
@@ -64,11 +59,10 @@ export class DocumentViewer extends React.Component {
     }
     return (
       <div>
-        <p>Document Data</p>
-          <div>
-            <h3>{document ? document.documentName : ''}</h3>
+          <div className="document">
+            <h3>{document ? document.documentName.toUpperCase() : ''}</h3>
             {document ? 
-                <div className="Document">
+                <div>
                   <div className="Edit">
                     <p>
                       {/* <button onClick={this.editHandler(document.id)}>Edit</button> */}

@@ -37,7 +37,7 @@ export class Header extends React.Component {
   return (
       <div>
         <header className="header">
-          <img src={logo} className="logo" alt="Chronic Data Logo" height="120"/>
+        <Link to="/"><img src={logo} className="logo" alt="Chronic Data Logo" height="120"/></Link>
           <div className="title">
             <h1 className="header-title"><Link to="/">CHRONIC DATA SOCIETY</Link></h1>
             <p className="header-intro">
