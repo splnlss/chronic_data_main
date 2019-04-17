@@ -1,5 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux'
+import {Redirect, withRouter} from 'react-router-dom';
+
 import '../../../containers/dashboard/dashboard';
 import {API_BASE_URL} from '../../../config';
 
@@ -36,8 +38,23 @@ export class DocumentViewer extends React.Component {
     }
   }
 
-  delete(){
+  deleteHandler = () => {
     //handle delete and js popup
+    const { match } = this.props;
+    fetch(`${API_BASE_URL}/documents/${match.params.id}`, {
+      method: 'Delete',
+      headers: {
+          'content-type': 'application/json'
+    },
+    body: JSON.stringify()
+    })
+    .then(responses  => {
+      console.log("delete:" + responses)
+    })
+    .then(()=>{
+      this.props.history.push('/Dashboard/Documents');
+    }
+    )
   }
 
   render(){
@@ -54,7 +71,10 @@ export class DocumentViewer extends React.Component {
             <h3>{document ? document.documentName : ''}</h3>
             {document ? 
                 <div className="Document">
-                  <p><a href="#">edit</a> | <a href="#">delete</a></p>
+                  <div className="Edit">
+                    <p><Link to={`/documents/edit/${document.id}`} component={"button"}>Edit</Link>
+                    <button onClick={this.deleteHandler}>Delete</button></p> 
+                  </div>
                   <p>Health Provider: {document.healthProviderName}</p>
                   <p>Notes: {document.notes}</p>
                 </div>
@@ -74,5 +94,5 @@ const mapStateToProps = (state) =>{
     documents: state.documents}
 }
 
-export default connect(mapStateToProps)(DocumentViewer)
+export default withRouter(connect(mapStateToProps)(DocumentViewer))
 
