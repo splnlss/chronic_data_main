@@ -9,11 +9,14 @@
 
 .header-logo {
   height: 80px;
+  
 }
 
 .header-title {
   color:black;
   font-size: 1.5em;
+  max-width: 600px;
+  min-width: 400px;
 }
 
 .header-intro {

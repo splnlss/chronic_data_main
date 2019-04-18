@@ -74,6 +74,7 @@ export class DocumentViewer extends React.Component {
                   </div>
                   <p>Health Provider: {document.healthProviderName}</p>
                   <p>Notes: {document.notes}</p>
+                  <p>Document:<a href={document.documentURL}>{document.documentURL}</a></p>
                 </div>
               : ''}
           </div>

@@ -50,8 +50,9 @@ export class DocumentForm extends React.Component {
                   </ul>
                   <ul>
                     <label htmlFor="notes">Notes:</label>
+                    <br></br>
                     <Field
-                      component={Input}
+                      component="textarea" 
                       type="text"
                       name="notes"
                       id="notes"
@@ -68,11 +69,11 @@ export class DocumentForm extends React.Component {
                       validate={[required, nonEmpty]}
                     />
                   </ul>
-                  {/* <ul>
+                  <ul>
                   <label htmlFor="documentFile">Document:</label>
                   <input id="documentFile"  type="file" name="documentFile"></input>
                  
-                  </ul> */}
+                  </ul>
                 </li>
                 <button disabled={this.props.pristine || this.props.submitting}>
                     Add
