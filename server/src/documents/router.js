@@ -49,8 +49,9 @@ router.get('/:id', (req,res) => {
 
 router.post('/', (req, res) => {
   const requiredFields = ['documentName'];
-  console.log(req.body)
+  console.log("POST DOC", req.body)
   singleUpload(req, res, function(err, some) {
+    console.log('FILE UPLOADED.', req.files)
     if (err){
       return res.status(422).send({errors: [{title: 'Document File Upload Error', detail: err.message}]})
     }
@@ -59,9 +60,9 @@ router.post('/', (req, res) => {
         documentName: req.body.documentName,
         notes: req.body.notes,
         healthProviderName: req.body.healthProviderName,
-        address: req.body.address,
-        phone: req.body.phone,
-        // documentURL: req.file.location,
+        // address: req.body.address,
+        // phone: req.body.phone,
+        //documentURL: req.file.location,
         userName: req.body.username
       })
     .then(document => res.status(201).json(document.serialize()))

@@ -20,9 +20,11 @@ const upload = multer({
     bucket: 'chronicdata-records',
     acl: 'bucket-owner-full-control',
     metadata: function(req, file, callback){
+      console.log('Metadata Callback', file)
       callback(null, {fieldName: file.fieldname})
     },
     key: function (req, file, callback) {
+      console.log('Key Callback', file)
       callback(null, Date.now().toString())
     }
   })
