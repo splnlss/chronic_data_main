@@ -2,32 +2,43 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Field, reduxForm, focus} from 'redux-form';
 import {editDocument} from '../action/edit-document';
+import {Button, Icon, Form} from 'semantic-ui-react';
 import Input from './input';
 import {Redirect} from 'react-router-dom'
+import {API_BASE_URL} from '../../../config'
+import axios from 'axios';
 import {required, nonEmpty} from '../../../validators';
 import './documents.css';
 import '../../../containers/dashboard/dashboard';
 
 export class DocumentEdit extends React.Component {
-  //state = {document:null}
-
-//   componentDidMount(){
-//     const { documents, match } = this.props;
-//     if(!documents || !documents.length){
-//       // redirect somewhere
-//       console.log('redirect')
-//       this.props.history.push('/Dashboard/Documents');
-//       return;
-//     }
-//     const document =  documents.find( doc => doc.id === match.params.id );
-//  }
+  constructor(props){
+    super(props);
+    this.fileInputEl = React.createRef();
+  }
 
   onSubmit(values) {
     const {documentName, notes, healthProviderName} = values;
     const {username} = this.props.auth.currentUser;
     const { id } = this.props.match.params;
     const documentUpload = {documentName, notes, healthProviderName, username};
-    console.log(documentUpload);
+
+    //uploading imagefile to aws
+    let formData = new FormData();
+    const imagefile = this.fileInputEl.current.files[0];
+    formData.append("documentFile", imagefile);
+    formData.append("documentName", documentName);
+    formData.append("notes", notes);
+    formData.append("healthProviderName", healthProviderName);
+    formData.append("username", username);
+    console.log(formData);
+
+    axios.put(`${API_BASE_URL}/documents/${id}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+    })
+
     return this.props
         .dispatch(editDocument(id, documentUpload))
         .then(()=>{
@@ -35,14 +46,14 @@ export class DocumentEdit extends React.Component {
         })
   }
   render() {
-    const { documents, match } = this.props;
+    const { documents, document, match } = this.props;
     if(!documents || !documents.length){
-       
       return <Redirect to="/Dashboard/Documents" />;
     }
   return (
         <div className="document">
-          <form className="document-form" onSubmit={this.props.handleSubmit(values =>
+        
+          <Form className="document-form" onSubmit={this.props.handleSubmit(values =>
             this.onSubmit(values)
           )}>
             <li>
@@ -53,7 +64,7 @@ export class DocumentEdit extends React.Component {
                   type="text"
                   name="documentName"
                   id="documentName"
-                  value={document.documentName}
+                  //value={document.documentName}
                   validate={[required, nonEmpty]}
                 />
               </ul>
@@ -65,7 +76,7 @@ export class DocumentEdit extends React.Component {
                   type="text"
                   name="notes"
                   id="notes"
-                  value={document.notes}
+                  //value={document.notes}
                   validate={[]}
                 />
               </ul>
@@ -76,22 +87,24 @@ export class DocumentEdit extends React.Component {
                   type="text"
                   name="healthProviderName"
                   id="healthProviderName"
-                  value={document.healthProviderName}
+                  //value={document.healthProviderName}
                   validate={[required, nonEmpty]}
                 />
               </ul>
               <ul>
-                  <label htmlFor="documentFile">Document:</label>
-                  <p>url:<a href={document.documentURL}>{document.documentURL}</a></p>
-                  <input id="documentFile"  type="file" name="documentFile"></input>
-                 
+                  <label htmlFor="documentFile">Document: <a href={document.documentURL}>{document.documentURL}</a></label>
+                  <input 
+                    ref={this.fileInputEl}
+                    id="documentFile"  type="file" name="documentFile"/>
                   </ul>
             </li>
-            <button disabled={this.props.pristine || this.props.submitting}>
+            <Button disabled={this.props.pristine || this.props.submitting}>
                 Add
-            </button>
-            {/* <button type="button">Cancel</button> */}
-        </form>
+            </Button>
+            <Button type="button" onClick={ () => {
+                this.props.history.push('/Dashboard/Documents');
+            }}>Cancel</Button>
+        </Form>
       </div>
     );
   }
@@ -110,7 +123,8 @@ const mapStateToProps = (state, ownProps) =>{
   return {
     documents:state.documents,
     auth:state.auth,
-    initialValues: document
+    initialValues: document,
+    document
   }
 }
 

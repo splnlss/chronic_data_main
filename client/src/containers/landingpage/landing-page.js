@@ -4,18 +4,22 @@ import {Link, Redirect} from 'react-router-dom';
 import '../dashboard/dashboard.css';
 import LoginForm from '../../auth/components/login-form';
 
+
 export function LandingPage(props) {
     // If we are logged in redirect straight to the user's dashboard
     if (props.loggedIn) {
         return <Redirect to="/dashboard" />;
     }
+    let styles = {
+      
+    };
 
     return (
       <main>
-        <div className="home">
+        <div className="home ui message">
             <h2>Welcome to Chronic Data</h2>
             <LoginForm />
-            <Link to="/register">Register</Link>
+            <Link to="/register" style={styles}>Register</Link>
         </div>
       </main>
     );

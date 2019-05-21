@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import {Redirect, withRouter} from 'react-router-dom';
+import {Button, Icon, Form} from 'semantic-ui-react';
 
 import '../../../containers/dashboard/dashboard';
 import {API_BASE_URL} from '../../../config';
@@ -63,18 +64,19 @@ export class DocumentViewer extends React.Component {
             <h3>{document ? document.documentName.toUpperCase() : ''}</h3>
             {document ? 
                 <div>
+                  <p>Health Provider: {document.healthProviderName}</p>
+                  <p>Notes: {document.notes}</p>
+                  <p>Document:<Link to ={`/image/${document.documentURL}`}><img src={document.documentURL} width="200" height="auto"></img></Link><a href={document.documentURL}>{document.documentURL}</a></p>
                   <div className="Edit">
                     <p>
                       {/* <button onClick={this.editHandler(document.id)}>Edit</button> */}
-                      <Link to={`/documents/edit/${document.id}`} component="button"><button type="button">Edit</button></Link>
-                      <button onClick={ () => {
+                      <Link to={`/documents/edit/${document.id}`} component="button"><Button type="button">Edit</Button></Link>
+                      <Button onClick={ () => {
                          if(window.confirm('Are you sure you want to delete this document?')){
                            this.deleteHandler()
-                          }}}>Delete</button></p> 
+                          }}}>Delete</Button>
+                    </p> 
                   </div>
-                  <p>Health Provider: {document.healthProviderName}</p>
-                  <p>Notes: {document.notes}</p>
-                  <p>Document:<a href={document.documentURL}>{document.documentURL}</a></p>
                 </div>
               : ''}
           </div>

@@ -4,6 +4,8 @@ import Input from './input';
 import {login} from '../actions/auth';
 import {required, nonEmpty} from '../../validators';
 
+import {Button, Icon, Form} from 'semantic-ui-react';
+
 export class LoginForm extends React.Component {
     onSubmit(values) {
         return this.props.dispatch(login(values.username, values.password));
@@ -19,8 +21,8 @@ export class LoginForm extends React.Component {
             );
         }
         return (
-            <form
-                className="login-form"
+            <Form
+                className="login-form ui"
                 onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values)
                 )}>
@@ -31,6 +33,7 @@ export class LoginForm extends React.Component {
                     type="text"
                     name="username"
                     id="username"
+                    placeholder="Username"
                     validate={[required, nonEmpty]}
                 />
                 <label htmlFor="password">Password</label>
@@ -39,15 +42,16 @@ export class LoginForm extends React.Component {
                     type="password"
                     name="password"
                     id="password"
+                    placeholder="Password"
                     validate={[required, nonEmpty]}
                 />
 {/* 
                 <a class="dropbox-btn" href="http://localhost:8080/api/auth/dropbox">Dropbox</a> */}
 
-                <button disabled={this.props.pristine || this.props.submitting}>
+                <Button disabled={this.props.pristine || this.props.submitting}>
                     Log in
-                </button>
-            </form>
+                </Button>
+            </Form>
         );
     }
 }

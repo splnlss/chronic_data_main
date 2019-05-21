@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Link, Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import './../../../containers/dashboard/dashboard'
 import './header.css'
 import logo from '../../../images/logo.svg';
@@ -35,21 +35,19 @@ export class Header extends React.Component {
     //     }
 
   return (
-      <div>
-        <header className="header">
+    <div>
+      <header className="header">
         <Link to="/"><img src={logo} className="logo" alt="Chronic Data Logo" height="120"/></Link>
-          <div className="title">
-            <h1 className="header-title"><Link to="/">CHRONIC DATA SOCIETY</Link></h1>
-            <p className="header-intro">
-                your data. your control.
-            </p>
-          </div>
-  			<nav>
-  				<ul className="header-links">
-  				  {headerMenu}
+        <div className="title">
+          <h1 className="header-title"><Link to="/">CHRONIC DATA SOCIETY</Link></h1>
+          <p className="header-intro"> your data. your control. </p>
+        </div>
+        <nav>
+          <ul className="header-links">
+            {headerMenu}
           </ul>
-  			</nav>
-  		</header>
+        </nav>
+      </header>
     </div>
     )
   }

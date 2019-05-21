@@ -46,12 +46,15 @@ router.get('/:id', (req,res) => {
         res.status(500).json({ error: 'error finding by ID' });
       })
 })
+router.get('/image/:imageID', (req,res) =>{
+  console.log('imageID: ' + req.params.imageID)
+})
 
 router.post('/', (req, res) => {
   const requiredFields = ['documentName'];
   console.log("POST DOC", req.body)
   singleUpload(req, res, function(err, some) {
-    console.log('FILE UPLOADED.', req.files)
+    console.log('FILE UPLOADED.')
     if (err){
       return res.status(422).send({errors: [{title: 'Document File Upload Error', detail: err.message}]})
     }
@@ -62,7 +65,7 @@ router.post('/', (req, res) => {
         healthProviderName: req.body.healthProviderName,
         // address: req.body.address,
         // phone: req.body.phone,
-        //documentURL: req.file.location,
+        documentURL: req.file.location,
         userName: req.body.username
       })
     .then(document => res.status(201).json(document.serialize()))
@@ -89,16 +92,23 @@ router.put('/:id', (req, res) =>{
   //   })
   // }
   const updated = {};
+  console.log("POST DOC", req.body)
   const updateableFields = ['documentName', 'notes', 'healthProviderName', 'address', 'phone'];
   updateableFields.forEach(field => {
     if (field in req.body) {
       updated[field] = req.body[field];
     }
   })
-  Document
+  singleUpload(req, res, function(err, some) {
+    console.log('FILE UPLOADED.')
+    if (err){
+      return res.status(422).send({errors: [{title: 'Document File Upload Error', detail: err.message}]})
+    }
+    Document
     .findByIdAndUpdate(req.params.id, { $set: updated }, { new: true })
     .then(updatedPost => res.status(204).end())
     .catch(err => res.status(500).json({ message: 'error updating document' }))
+  })
 })
 
 router.delete('/:id', (req, res) => {

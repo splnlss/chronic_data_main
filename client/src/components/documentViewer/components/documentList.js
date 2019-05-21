@@ -26,7 +26,6 @@ export class DocumentList extends React.Component {
       </div>
       )
   }
-
 }
 
 const mapStateToProps = (state) =>{

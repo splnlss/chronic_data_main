@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Field, reduxForm, focus} from 'redux-form';
-// import {Button, Icon} from 'semanitc-ui-react';
+import {Button, Form} from 'semantic-ui-react';
 import {submitDocument} from '../action/submit-document';
 import Input from './input';
 import {API_BASE_URL} from '../../../config'
@@ -18,52 +18,41 @@ export class DocumentForm extends React.Component {
     onSubmit(values) {
       const {documentName, notes, healthProviderName, documentFile} = values;
       const {username} = this.props.auth.currentUser;
-      const documentUpload = {documentName, notes, healthProviderName, documentFile, username};
-
+      let documentUpload = {documentName, notes, healthProviderName, username};
+      
       //uploading imagefile to aws
       let formData = new FormData();
       const imagefile = this.fileInputEl.current.files[0];
-      console.log(imagefile);
-      formData.append("image", imagefile);
+      formData.append("documentFile", imagefile);
+      formData.append("documentName", documentName);
+      formData.append("notes", notes);
+      formData.append("healthProviderName", healthProviderName);
+      formData.append("username", username);
       console.log(formData);
 
-      axios.post(`${API_BASE_URL}/aws/image-upload`, formData, {
+      axios.post(`${API_BASE_URL}/documents`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
       })
       .then((results)=>{
-        console.log(results.data.imageUrl)
+        // console.log(results.data.imageUrl)
+        // documentUpload = {...documentUpload, documentURL:results.data.imageUrl}
+        // this.props.dispatch(submitDocument(documentUpload))
+        console.log("dispatch submitted")
+        this.props.history.push('/Dashboard/Documents');
+       
       })
       .catch((err)=>{
         console.log(err)
       })
-      // attach results.data.image.Url to documentUpload
-
-      return this.props
-          .dispatch(submitDocument(documentUpload))
-          .then(() =>{
-            console.log("dispatch submitted")
-          })
-          .then(()=>{
-            this.props.history.push('/Dashboard/Documents');
-          })
-        //   .then(() => this.props.dispatch(login(username, password)));
-        // event.preventDefault(
-          //dispatch props!!   return this.props.dispatch(
     }
+    
     render() {
-      // let error;
-      // if (this.props.error) {
-      //     error = (
-      //         <div className="form-error" aria-live="polite">
-      //             {this.props.error}
-      //         </div>
-      //     );
-      // }
+     
       return (
          <div className="document">
-            <form className="document-form" onSubmit={this.props.handleSubmit(values =>
+            <Form className="document-form" onSubmit={this.props.handleSubmit(values =>
               this.onSubmit(values)
              )}>
                 <li>
@@ -103,14 +92,15 @@ export class DocumentForm extends React.Component {
                   <input 
                     ref={this.fileInputEl}
                     id="documentFile"  type="file" name="documentFile"/>
-                 
                   </ul>
                 </li>
-                <button disabled={this.props.pristine || this.props.submitting}>
+                <Button disabled={this.props.pristine || this.props.submitting}>
                     Add
-                </button>
-                {/* <button type="button">Cancel</button> */}
-            </form>  
+                </Button>
+                <Button type="button" type="button" onClick={ () => {
+                     this.props.history.push('/Dashboard/Documents');
+                 }}>Cancel</Button>
+            </Form>  
           </div>
         );
     }

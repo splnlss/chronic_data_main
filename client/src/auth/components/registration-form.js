@@ -3,9 +3,12 @@ import {Field, reduxForm, focus} from 'redux-form';
 import {registerUser} from '../actions/users';
 import {login} from '../actions/auth';
 import Input from './input';
+import {Button, Form} from 'semantic-ui-react';
 import {required, nonEmpty, matches, length, isTrimmed} from '../../validators';
+
 const passwordLength = length({min: 6, max: 72});
 const matchesPassword = matches('password');
+
 
 export class RegistrationForm extends React.Component {
     onSubmit(values) {
@@ -18,13 +21,13 @@ export class RegistrationForm extends React.Component {
 
     render() {
         return (
-            <form
+            <Form
                 className="login-form"
                 onSubmit={this.props.handleSubmit(values =>
                     this.onSubmit(values)
                 )}>
                 <label htmlFor="firstName">First name</label>
-                <Field component={Input} type="text" name="firstName" />
+                <Field component={Input} type="text" name="firstName" placeholder="First Name"/>
                 <label htmlFor="lastName">Last name</label>
                 <Field component={Input} type="text" name="lastName" />
                 <label htmlFor="username">Username</label>
@@ -48,12 +51,12 @@ export class RegistrationForm extends React.Component {
                     name="passwordConfirm"
                     validate={[required, nonEmpty, matchesPassword]}
                 />
-                <button
+                <Button
                     type="submit"
                     disabled={this.props.pristine || this.props.submitting}>
                     Register
-                </button>
-            </form>
+                </Button>
+            </Form>
         );
     }
 }

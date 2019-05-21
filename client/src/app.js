@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {BrowserRouter as Router, Route, Link, Switch, withRouter} from 'react-router-dom';
+import { Route, Link, Switch, withRouter} from 'react-router-dom';
 import HeaderBar from './components/common/header/header';
 import LandingPage from './containers/landingpage/landing-page';
 import Dashboard from './containers/dashboard/dashboard';
@@ -19,18 +19,18 @@ export class App extends React.Component {
             <div className="app">
                 <HeaderBar />
                 <main>
-                <Switch>
-                  <Route exact path="/" component={LandingPage}/>
-                  <Route exact path="/Dashboard" component={Dashboard} />
-                  <Route path="/Dashboard/SubmitDocument" component={DocumentsForm}/>
-                  <Route path="/Dashboard/Vitals" component={Vitals}/>
-                  <Route path="/Dashboard/Documents" component={DocumentList}/>
-                  <Route path="/Dashboard/Contact" component={Contact}/>
-                  <Route path="/register" component={RegistrationPage} />
-                  <Route path="/documents/edit/:id" component={DocumentEdit} />
-                  <Route path="/documents/:id" component={DocumentViewer} />
-                  {/* <SecureRoute path="/profile" component={ProfilePage} /> */}
-                </Switch>
+                    <Switch>
+                    <Route exact path="/" component={LandingPage}/>
+                    <Route exact path="/Dashboard" component={Dashboard} />
+                    <Route path="/Dashboard/SubmitDocument" component={DocumentsForm}/>
+                    <Route path="/Dashboard/Vitals" component={Vitals}/>
+                    <Route path="/Dashboard/Documents" component={DocumentList}/>
+                    <Route path="/Dashboard/Contact" component={Contact}/>
+                    <Route path="/register" component={RegistrationPage} />
+                    <Route path="/documents/edit/:id" component={DocumentEdit} />
+                    <Route path="/documents/:id" component={DocumentViewer} />
+                    {/* <SecureRoute path="/profile" component={ProfilePage} /> */}
+                    </Switch>
                 </main>
             </div>
         );
@@ -44,3 +44,9 @@ const mapStateToProps = state => ({
 
 // Deal with update blocking - https://reacttraining.com/react-router/web/guides/dealing-with-update-blocking
 export default withRouter(connect(mapStateToProps)(App));
+
+// export default () => <div>the app</div>
+
+
+
+

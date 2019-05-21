@@ -5,7 +5,6 @@ export const SET_DOCUMENTS = 'SET_DOCUMENTS';
 export const fetchDocuments = () => (dispatch) => {
 
     //  dispatch({type:"START_CALL"})
-    
     console.log('START fetch')
     fetch(`${API_BASE_URL}/documents`, {
         method: 'GET',
