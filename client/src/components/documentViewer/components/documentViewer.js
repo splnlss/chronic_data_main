@@ -66,7 +66,11 @@ export class DocumentViewer extends React.Component {
                 <div>
                   <p>Health Provider: {document.healthProviderName}</p>
                   <p>Notes: {document.notes}</p>
-                  <p>Document:<Link to ={`/image/${document.documentURL}`}><img src={document.documentURL} width="200" height="auto"></img></Link><a href={document.documentURL}>{document.documentURL}</a></p>
+                  <p>Document:
+                  <br></br>
+                  <Link to ={`/image/${document.documentURL.slice((document.documentURL.lastIndexOf('/')+1))}`}><img src={document.documentURL} width="200" height="auto"></img></Link>
+                  <br></br>
+                  <a href={document.documentURL}> DownloadLink</a></p>
                   <div className="Edit">
                     <p>
                       {/* <button onClick={this.editHandler(document.id)}>Edit</button> */}
