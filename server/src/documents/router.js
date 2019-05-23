@@ -46,9 +46,9 @@ router.get('/:id', (req,res) => {
         res.status(500).json({ error: 'error finding by ID' });
       })
 })
-router.get('/image/:imageID', (req,res) =>{
-  console.log('imageID: ' + req.params.imageID)
-})
+// router.get('/image/:imageID', (req,res) =>{
+//   console.log('imageID: ' + req.params.imageID)
+// })
 
 router.post('/', (req, res) => {
   const requiredFields = ['documentName'];

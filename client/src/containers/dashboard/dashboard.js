@@ -12,7 +12,6 @@ export class Dashboard extends React.Component {
 
   render() {
     let userNameUpperCase = this.props.username.toUpperCase()
-
     return (
       <Router>
         <div className="dashboard">

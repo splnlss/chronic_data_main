@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import './documentList.css';
 import '../../../containers/dashboard/dashboard';
 import { fetchDocuments } from '../action/fetch-documents';
 import { Link } from 'react-router-dom'

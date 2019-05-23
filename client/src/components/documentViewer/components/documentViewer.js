@@ -2,11 +2,13 @@ import React from 'react';
 import {connect} from 'react-redux'
 import {Redirect, withRouter} from 'react-router-dom';
 import {Button, Icon, Form} from 'semantic-ui-react';
+import './documentViewer.css';
 
 import '../../../containers/dashboard/dashboard';
 import {API_BASE_URL} from '../../../config';
 
 import { Link } from 'react-router-dom'
+import { Dashboard } from '../../../containers/dashboard/dashboard';
 
 export class DocumentViewer extends React.Component {
   state = {document:null}
@@ -61,16 +63,19 @@ export class DocumentViewer extends React.Component {
     return (
       <div>
           <div className="document">
+            <Link to={'/Dashboard/Documents'} className="close-button">X</Link>
             <h3>{document ? document.documentName.toUpperCase() : ''}</h3>
             {document ? 
                 <div>
                   <p>Health Provider: {document.healthProviderName}</p>
                   <p>Notes: {document.notes}</p>
-                  <p>Document:
+                  <p>Document: </p>
                   <br></br>
-                  <Link to ={`/image/${document.documentURL.slice((document.documentURL.lastIndexOf('/')+1))}`}><img src={document.documentURL} width="200" height="auto"></img></Link>
-                  <br></br>
-                  <a href={document.documentURL}> DownloadLink</a></p>
+                  {document.documentURL ? 
+                    <Link to={`/image/${document.documentURL.slice((document.documentURL.lastIndexOf('/')+1))}`}><img src={document.documentURL} width="200" height="auto"></img></Link>
+                  : ''}
+                  <br/>
+                  {document.documentURL ? <a href={document.documentURL}>Download Original File</a> : ''}
                   <div className="Edit">
                     <p>
                       {/* <button onClick={this.editHandler(document.id)}>Edit</button> */}
@@ -84,9 +89,6 @@ export class DocumentViewer extends React.Component {
                 </div>
               : ''}
           </div>
-        <ul>
-
-        </ul>
       </div>
       )
   }
