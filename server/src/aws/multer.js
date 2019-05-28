@@ -18,6 +18,7 @@ const upload = multer({
     s3: s3,
     bucket: 'chronicdata-records',
     acl: 'bucket-owner-full-control',
+    contentType: multerS3.AUTO_CONTENT_TYPE,
     metadata: function(req, file, callback){
       console.log('Metadata Callback', file)
       callback(null, {fieldName: file.fieldname})
@@ -28,7 +29,5 @@ const upload = multer({
     }
   })
 })
-
-
 
 module.exports = upload;
