@@ -33,6 +33,7 @@ export class App extends React.Component {
                     <Route path="/documents/edit/:id" component={DocumentEdit} />
                     <Route path="/documents/:id" component={DocumentViewer} />
                     <Route path="/image/:id" component={PDFViewer} />
+                    <Route path="/pdf/:id" component={PDFViewer} />
                     {/* <SecureRoute path="/profile" component={ProfilePage} /> */}
                     </Switch>
                 </main>

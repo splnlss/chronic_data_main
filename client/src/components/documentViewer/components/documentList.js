@@ -9,11 +9,14 @@ export class DocumentList extends React.Component {
   componentDidMount(){
     this.props.fetchDocuments();
   }
+  
+  goBack = () => this.props.history.goBack();
 
   render(){
     const { documents } = this.props;
     return (
       <div className="document">
+        <div onClick={this.goBack} className="close-button">X</div>
         <p>Document Data</p>
         <ul>
         { documents && documents.map(document => (

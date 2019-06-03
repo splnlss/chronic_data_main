@@ -17,6 +17,8 @@ export class DocumentEdit extends React.Component {
     this.fileInputEl = React.createRef();
   }
 
+  goBack = () => this.props.history.goBack();
+
   onSubmit(values) {
     const {documentName, notes, healthProviderName} = values;
     const {username} = this.props.auth.currentUser;
@@ -45,6 +47,7 @@ export class DocumentEdit extends React.Component {
           this.props.history.push('/Dashboard/Documents');
         })
   }
+
   render() {
     const { documents, document, match } = this.props;
     if(!documents || !documents.length){
@@ -52,7 +55,7 @@ export class DocumentEdit extends React.Component {
     }
   return (
         <div className="document">
-        
+          <div onClick={this.goBack} className="close-button">X</div>
           <Form className="document-form" onSubmit={this.props.handleSubmit(values =>
             this.onSubmit(values)
           )}>

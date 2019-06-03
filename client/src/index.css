@@ -22,3 +22,16 @@ main {
   padding:50px;
 
 }
+
+.close-button{
+  color: grey;
+  background-color: white;
+  float:right;
+  margin: -30px;
+  padding: 2px;
+  cursor: pointer;  
+}
+
+.close-button:hover{
+  color:orange;
+}

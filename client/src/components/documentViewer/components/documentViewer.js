@@ -53,6 +53,8 @@ export class DocumentViewer extends React.Component {
     })
   }
 
+  goBack = () => this.props.history.goBack();
+
   render(){
   
     let {document} = this.state;
@@ -63,7 +65,7 @@ export class DocumentViewer extends React.Component {
     return (
       <div>
           <div className="document">
-            <Link to={'/Dashboard/Documents'} className="close-button">X</Link>
+            <div onClick={this.goBack} className="close-button">X</div>
             <h3>{document ? document.documentName.toUpperCase() : ''}</h3>
             {document ? 
                 <div>
@@ -92,7 +94,6 @@ export class DocumentViewer extends React.Component {
       </div>
       )
   }
-
 }
 
 const mapStateToProps = (state) =>{

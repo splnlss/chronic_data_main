@@ -15,6 +15,9 @@ export class DocumentForm extends React.Component {
       super(props);
       this.fileInputEl = React.createRef();
     }
+
+    goBack = () => this.props.history.goBack();
+
     onSubmit(values) {
       const {documentName, notes, healthProviderName, documentFile} = values;
       const {username} = this.props.auth.currentUser;
@@ -52,6 +55,8 @@ export class DocumentForm extends React.Component {
      
       return (
          <div className="document">
+            <div onClick={this.goBack} className="close-button">X</div>
+
             <Form className="document-form" onSubmit={this.props.handleSubmit(values =>
               this.onSubmit(values)
              )}>

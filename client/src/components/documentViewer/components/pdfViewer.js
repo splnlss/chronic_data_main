@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {Redirect, withRouter} from 'react-router-dom';
 import { Document, Page, pdfjs } from 'react-pdf';
+import axios from 'axios';
+
 import {AWS_BASE_URL} from '../../../config';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-
-
-
  
 class PDFViewer extends Component {
   
@@ -24,12 +23,6 @@ class PDFViewer extends Component {
     const { pageNumber, numPages } = this.state;
     const imgUrl = AWS_BASE_URL+this.props.match.params.id;
     console.log(imgUrl);
-    
-    if (imgUrl){
-      fetch(imgUrl)
-      .then(response => response.json())
-      .then(data => console.log(data));
-    }
 
     return (
       <div>
