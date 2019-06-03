@@ -12,6 +12,8 @@ import DocumentEdit from './components/documents/components/document-edit'
 import Contact from "./containers/contact/contact";
 import RegistrationPage from './auth/components/registration-page';
 import FileViewer from './components/documentViewer/components/fileViewer';
+import PDFViewer from './components/documentViewer/components/pdfViewer';
+
 import {refreshAuthToken} from './auth/actions/auth';
 
 export class App extends React.Component {
@@ -30,7 +32,7 @@ export class App extends React.Component {
                     <Route path="/register" component={RegistrationPage} />
                     <Route path="/documents/edit/:id" component={DocumentEdit} />
                     <Route path="/documents/:id" component={DocumentViewer} />
-                    <Route path="/image/:id" component={FileViewer} />
+                    <Route path="/image/:id" component={PDFViewer} />
                     {/* <SecureRoute path="/profile" component={ProfilePage} /> */}
                     </Switch>
                 </main>
