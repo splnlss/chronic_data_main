@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {Redirect, withRouter} from 'react-router-dom';
-import { Document, Page, pdfjs } from 'react-pdf';
+import { Document, Page, pdfjs } from 'react-pdf/dist/entry.webpack';
 import axios from 'axios';
 
 import {AWS_BASE_URL} from '../../../config';
@@ -21,13 +21,13 @@ class PDFViewer extends Component {
  
   render() {
     const { pageNumber, numPages } = this.state;
-    const imgUrl = AWS_BASE_URL+this.props.match.params.id;
+    const imgUrl = {url:AWS_BASE_URL+this.props.match.params.id};
     console.log(imgUrl);
 
     return (
       <div>
         <Document
-          file={imgUrl}
+          file= {{url: imgUrl}}
           onLoadSuccess={this.onDocumentLoadSuccess}
         >
           <Page pageNumber={pageNumber} />

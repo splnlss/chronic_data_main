@@ -13,6 +13,7 @@ import Contact from "./containers/contact/contact";
 import RegistrationPage from './auth/components/registration-page';
 import FileViewer from './components/documentViewer/components/fileViewer';
 import PDFViewer from './components/documentViewer/components/pdfViewer';
+import PDFViewerTest from './components/documentViewer/components/pdfViewerTest';
 
 import {refreshAuthToken} from './auth/actions/auth';
 

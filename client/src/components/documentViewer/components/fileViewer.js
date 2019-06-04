@@ -12,7 +12,7 @@ export default function FileViewer(props){
     return (
       <div>
             <div className="document">
-              <img src={imgUrl} max-width="600"/>
+              <img src={imgUrl} alt="document file" max-width="600"/>
               <br></br>
               <a href={imgUrl}>Download Link</a>
             </div>

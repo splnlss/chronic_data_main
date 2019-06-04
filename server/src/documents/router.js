@@ -11,6 +11,12 @@ const jsonParser = bodyParser.json()
 
 router.use(jsonParser)
 
+router.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 const jwtAuth = passport.authenticate('jwt', {session: false})
 
 const upload = require('../aws/multer');
