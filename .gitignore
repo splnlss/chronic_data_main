@@ -5,6 +5,7 @@ cra-server-ex.graffle
 
 # assets
 server/assets
+client/public/docs
 
 # dependencies
 client/node_modules

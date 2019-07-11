@@ -2,7 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux'
 import '../../../containers/dashboard/dashboard';
 import { fetchDocuments } from '../action/fetch-documents';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import Card from './card';
 
 export class DocumentList extends React.Component {
 
@@ -17,12 +18,10 @@ export class DocumentList extends React.Component {
     return (
       <div className="document">
         <div onClick={this.goBack} className="close-button">X</div>
-        <p>Document Data</p>
+        <h2>Documents</h2>
         <ul>
         { documents && documents.map(document => (
-          <div key={document.id}>
-            <li><h4>Title: <Link to={`/documents/${document.id}`}>{document.documentName}</Link></h4></li>
-          </div>
+          <Card id={document.id} name={document.documentName} provider={document.healthProviderName}></Card>
         ))}
         </ul>
       </div>

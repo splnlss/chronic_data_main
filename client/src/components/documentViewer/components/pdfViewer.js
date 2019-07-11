@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import {Redirect, withRouter} from 'react-router-dom';
 import { Document, Page, pdfjs } from 'react-pdf/dist/entry.webpack';
-import axios from 'axios';
 
 import {AWS_BASE_URL} from '../../../config';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+
  
 class PDFViewer extends Component {
   
@@ -25,14 +25,15 @@ class PDFViewer extends Component {
     console.log(imgUrl);
 
     return (
-      <div>
+      <div style={{ width: 600 }}>
         <Document
-          file= {{url: imgUrl}}
+          file= {imgUrl}
+          // file= '/docs/examplePDF.pdf'
           onLoadSuccess={this.onDocumentLoadSuccess}
         >
-          <Page pageNumber={pageNumber} />
+          <Page pageNumber={pageNumber} width={600}/>
         </Document>
-        <p>Page {pageNumber} of {numPages}</p>
+        <p>Page {pageNumber} of {numPages} </p>
       </div>
     );
   }
