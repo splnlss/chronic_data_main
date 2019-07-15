@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {Redirect, withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import {Button, Icon, Form} from 'semantic-ui-react';
 import './documentViewer.css';
 
@@ -66,6 +66,7 @@ export class DocumentViewer extends React.Component {
       <div>
           <div className="document">
             <div onClick={this.goBack} className="close-button">X</div>
+            <div className="documentInfo">
             <h3>{document ? document.documentName.toUpperCase() : ''}</h3>
             {document ? 
                 <div>
@@ -91,6 +92,7 @@ export class DocumentViewer extends React.Component {
                 </div>
               : ''}
           </div>
+            </div>
       </div>
       )
   }

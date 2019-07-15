@@ -6,6 +6,7 @@ function card(props){
     backgroundColor: "white",
     padding: '2px 2px 2px 8px',
     margin: '4px',
+    borderRadius: '4px'
     // border: '1px solid lightgrey'
   }
 

@@ -23,7 +23,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "react-scripts": "^3.0.1"
+    "react-scripts": "3.0.1"
   },
   "browserslist": [
     ">0.2%",
