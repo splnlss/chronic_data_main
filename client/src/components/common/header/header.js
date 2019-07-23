@@ -18,13 +18,13 @@ export class Header extends React.Component {
 
     if (this.props.loggedIn){
         headerMenu =(
-          <div>
+          <ul className="header-links">
             <li><Link to="/Dashboard/SubmitDocument">+ Add Document</Link></li>
             <li><Link to="/Dashboard/Documents">+ Documents</Link></li>
             <li><Link to="/Dashboard/Vitals">+ Add Vitals</Link></li>
             <li><Link to="/Dashboard/Contact">+ Contact</Link></li>
             <li><a href="#" onClick={() => this.logOut()}>+ Log out</a></li>
-          </div>
+          </ul>
         );
     }
 
@@ -37,15 +37,13 @@ export class Header extends React.Component {
   return (
     <div>
       <header className="header">
-        <Link to="/"><img src={logo} className="logo" alt="Chronic Data Logo" height="120"/></Link>
+        <Link to="/"><img src={logo} className="header-logo" alt="Chronic Data Logo" height="120"/></Link>
         <div className="title">
           <h1 className="header-title"><Link to="/">CHRONIC DATA SOCIETY</Link></h1>
           <p className="header-intro"> your data. your control. </p>
         </div>
         <nav>
-          <ul className="header-links">
             {headerMenu}
-          </ul>
         </nav>
       </header>
     </div>
