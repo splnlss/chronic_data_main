@@ -14,12 +14,12 @@
 .header-title {
   color:black;
   font-size: 1.5em;
-  max-width: 600px;
-  min-width: 400px;
+  margin: 50px 50px 0 50px;
 }
 
 .header-intro {
   font-size: large;
+  margin: 0 50px 0 50px;
 }
 
 .header-links{
@@ -38,6 +38,7 @@ ul{
       background-color: white;
       height: 50px;
       color: darkgrey;
+     
   }
   .header-logo {
     display: none;
@@ -52,5 +53,8 @@ ul{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+  .nav{
+    background-color: blue;
   }
 }
